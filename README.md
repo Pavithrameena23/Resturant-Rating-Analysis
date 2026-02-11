@@ -41,4 +41,5 @@ Data Cleansing: Standardized varied rating scales and categorized 100+ unique cu
 └── README.md                  # Project documentation
 
 
+<img width="731" height="371" alt="Resturant Rating Analysis" src="https://github.com/user-attachments/assets/a8c66cd3-3c57-4953-8411-b307d7857975" />
 
