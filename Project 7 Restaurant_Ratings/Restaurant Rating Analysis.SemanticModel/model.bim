@@ -1,0 +1,1137 @@
+{
+  "compatibilityLevel": 1550,
+  "model": {
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"Consumer_Preferences\",\"Consumers\",\"Ratings\",\"Resturant_Cuisines\",\"Resturants\",\"DAX\"]"
+      },
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "1"
+      },
+      {
+        "name": "PBIDesktopVersion",
+        "value": "2.138.782.0 (24.11)"
+      },
+      {
+        "name": "PBI_ProTooling",
+        "value": "[\"DevMode\"]"
+      }
+    ],
+    "culture": "en-US",
+    "cultures": [
+      {
+        "name": "en-US",
+        "linguisticMetadata": {
+          "content": {
+            "Language": "en-US",
+            "Version": "1.0.0"
+          },
+          "contentType": "json"
+        }
+      }
+    ],
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "relationships": [
+      {
+        "name": "AutoDetected_2ea232f8-2efc-4822-a4c1-097bdf97e59a",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "Consumer_ID",
+        "fromTable": "Ratings",
+        "toColumn": "Consumer_ID",
+        "toTable": "Consumers"
+      },
+      {
+        "name": "AutoDetected_a579881b-72e7-4144-a554-7e494c4c6841",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "Restaurant_ID",
+        "fromTable": "Ratings",
+        "toColumn": "Restaurant_ID",
+        "toTable": "Resturants"
+      },
+      {
+        "name": "AutoDetected_2690747c-3560-4335-8951-5bdb44d1724e",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "Restaurant_ID",
+        "fromTable": "Resturant_Cuisines",
+        "toColumn": "Restaurant_ID",
+        "toTable": "Resturants"
+      },
+      {
+        "name": "AutoDetected_a73deb79-bf1e-4c4f-950e-0cba0c781c86",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "Consumer_ID",
+        "fromTable": "Consumer_Preferences",
+        "toColumn": "Consumer_ID",
+        "toTable": "Consumers"
+      },
+      {
+        "name": "9a64d04a-f7cd-6a2e-03f3-9eacfd7c8aa2",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "Preferred_Cuisine",
+        "fromTable": "Consumer_Preferences",
+        "toColumn": "Preferred_Cuisine",
+        "toTable": "CuisineCount"
+      }
+    ],
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "Consumer_Preferences",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Consumer_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "8e576627-d095-4d75-957c-4c4eeda473b9",
+            "sourceColumn": "Consumer_ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Preferred_Cuisine",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "cd9763f0-fdbd-409c-b623-cc4dc0162a33",
+            "sourceColumn": "Preferred_Cuisine",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "62b84be8-6e16-4e5a-82e8-03752f290436",
+        "partitions": [
+          {
+            "name": "Consumer_Preferences",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(File.Contents(\"C:\\Users\\Lenovo\\Desktop\\Quantum Analytics DAF program\\DAFI Project\\Project Analysis Power BI\\Project 7 Restaurant_Ratings\\excel\\consumer_preferences.xlsx\"), null, true),",
+                "    Consumer_Preferences_Table = Source{[Item=\"Consumer_Preferences\",Kind=\"Table\"]}[Data],",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Consumer_Preferences_Table,{{\"Column1\", type text}, {\"Column2\", type text}}),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Changed Type\", [PromoteAllScalars=true]),",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Consumer_ID\", type text}, {\"Preferred_Cuisine\", type text}}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Changed Type1\")",
+                "in",
+                "    #\"Removed Duplicates\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DateTableTemplate_017286be-999f-4db3-ade0-406e63eb24eb",
+        "annotations": [
+          {
+            "name": "__PBI_TemplateDateTable",
+            "value": "true"
+          },
+          {
+            "name": "DefaultItem",
+            "value": "DateHierarchy"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "612b8e8f-9cba-40e7-ad1b-9140b14ea2da",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "isHidden": true,
+            "lineageTag": "068a210a-fad9-4c65-bdbd-1aa2f9b0cea3",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "isHidden": true,
+            "lineageTag": "a77f9af6-a59a-491c-a1ee-f82d484f60c3",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "c35f4532-02ff-499b-933f-ea3b88425748",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "isHidden": true,
+            "lineageTag": "2ba5a3d6-03b7-4be1-8a6c-6777afd3f572",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "isHidden": true,
+            "lineageTag": "0550a17c-7908-4ade-b816-ca3fb91a73a3",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "isHidden": true,
+            "lineageTag": "aa8cb107-08b7-4d60-a868-8909916a250f",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Date Hierarchy",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "lineageTag": "e1deb5c4-1ce9-47b9-9d7a-150397f5f062",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "lineageTag": "102b2c59-a9e5-43bc-b639-415ebe57964e",
+                "ordinal": 1
+              },
+              {
+                "name": "Month",
+                "column": "Month",
+                "lineageTag": "233ddbd6-bfa1-49d1-a40a-86bc9b23fe4b",
+                "ordinal": 2
+              },
+              {
+                "name": "Day",
+                "column": "Day",
+                "lineageTag": "c0c0fd09-2f28-42a0-93ad-4d4b255517a4",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "a94588f0-7a46-4aad-a1c5-4b1bc15dcea5"
+          }
+        ],
+        "isHidden": true,
+        "isPrivate": true,
+        "lineageTag": "19d309c1-7eee-400d-a6eb-d1836474adcf",
+        "partitions": [
+          {
+            "name": "DateTableTemplate_017286be-999f-4db3-ade0-406e63eb24eb",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(2015,1,1), Date(2015,1,1))",
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Consumers",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Consumer_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a57925d8-73dc-4e62-97e4-40a965cc5adf",
+            "sourceColumn": "Consumer_ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "City",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "2c7729ab-6044-4e77-95eb-1501d73697e5",
+            "sourceColumn": "City",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "State",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "4ba6fcea-26bf-4df9-b6de-e9724a7e17f2",
+            "sourceColumn": "State",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Country",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "0667660c-f3fe-4581-b0d5-41bd59250f7b",
+            "sourceColumn": "Country",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Latitude",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "d908262a-1930-460f-9b6a-4829bc314aab",
+            "sourceColumn": "Latitude",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Longitude",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "155abac7-37b9-4a08-8c0b-ba24a473e03b",
+            "sourceColumn": "Longitude",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Smoker",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e8f6cba7-28b5-49ce-8453-e5c18f9b68b1",
+            "sourceColumn": "Smoker",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Drink_Level",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "4bced327-8f89-4407-b331-b36da698112b",
+            "sourceColumn": "Drink_Level",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Transportation_Method",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b098b98c-c4ba-4877-89db-000657f546e3",
+            "sourceColumn": "Transportation_Method",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Marital_Status",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c0c3b1ce-6b36-43ea-ae6c-c7bb8d7c51ed",
+            "sourceColumn": "Marital_Status",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Children",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "7c2a24dd-51a4-4dd1-84d6-071c20d1b751",
+            "sourceColumn": "Children",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Age",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "45c790e8-0f5c-4c75-b4d7-de72b5c88f0b",
+            "sourceColumn": "Age",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Occupation",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "52a0203d-312f-4816-aae6-0e919b8ce913",
+            "sourceColumn": "Occupation",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Budget",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "57f678be-19a4-475c-bd89-f5bbabd4433a",
+            "sourceColumn": "Budget",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "078567a2-43d8-4d95-a114-765bf68a1321",
+        "partitions": [
+          {
+            "name": "Consumers",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(File.Contents(\"C:\\Users\\Lenovo\\Desktop\\Quantum Analytics DAF program\\DAFI Project\\Project Analysis Power BI\\Project 7 Restaurant_Ratings\\excel\\consumers.xlsx\"), null, true),",
+                "    Consumers_Table = Source{[Item=\"Consumers\",Kind=\"Table\"]}[Data],",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Consumers_Table,{{\"Consumer_ID\", type text}, {\"City\", type text}, {\"State\", type text}, {\"Country\", type text}, {\"Latitude\", type number}, {\"Longitude\", type number}, {\"Smoker\", type text}, {\"Drink_Level\", type text}, {\"Transportation_Method\", type text}, {\"Marital_Status\", type text}, {\"Children\", type text}, {\"Age\", Int64.Type}, {\"Occupation\", type text}, {\"Budget\", type text}}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Changed Type\"),",
+                "    #\"Removed Blank Rows\" = Table.SelectRows(#\"Removed Duplicates\", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {\"\", null})))",
+                "in",
+                "    #\"Removed Blank Rows\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Ratings",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Consumer_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3c6bd3e9-c0ca-4414-bdc7-53f7e0725589",
+            "sourceColumn": "Consumer_ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Restaurant_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "0c52110d-97ff-4461-9e2e-1d4399b5bfdc",
+            "sourceColumn": "Restaurant_ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Overall_Rating",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "57cc7f43-4ea5-4e05-9f33-d9f7c51933ef",
+            "sourceColumn": "Overall_Rating",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Food_Rating",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "01e8be7e-2b44-4bef-ac65-23878d23d5ef",
+            "sourceColumn": "Food_Rating",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Service_Rating",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "c606db53-02c1-4855-aac7-4fbadbb3a937",
+            "sourceColumn": "Service_Rating",
+            "summarizeBy": "sum"
+          }
+        ],
+        "lineageTag": "2f72417e-b479-4b97-87d4-10534b578c7e",
+        "partitions": [
+          {
+            "name": "Ratings",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(File.Contents(\"C:\\Users\\Lenovo\\Desktop\\Quantum Analytics DAF program\\DAFI Project\\Project Analysis Power BI\\Project 7 Restaurant_Ratings\\excel\\ratings.xlsx\"), null, true),",
+                "    Ratings_Table = Source{[Item=\"Ratings\",Kind=\"Table\"]}[Data],",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Ratings_Table,{{\"Consumer_ID\", type text}, {\"Restaurant_ID\", Int64.Type}, {\"Overall_Rating\", Int64.Type}, {\"Food_Rating\", Int64.Type}, {\"Service_Rating\", Int64.Type}}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Changed Type\"),",
+                "    #\"Removed Blank Rows\" = Table.SelectRows(#\"Removed Duplicates\", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {\"\", null})))",
+                "in",
+                "    #\"Removed Blank Rows\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Resturant_Cuisines",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Restaurant_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "60804958-309d-4433-80cd-b484324f0d97",
+            "sourceColumn": "Restaurant_ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Cuisine",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "293d35b6-2abe-46b7-b62d-814f8c82bb42",
+            "sourceColumn": "Cuisine",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "61646552-5cff-417a-a14e-a79d0b7d26dc",
+        "partitions": [
+          {
+            "name": "Resturant_Cuisines",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(File.Contents(\"C:\\Users\\Lenovo\\Desktop\\Quantum Analytics DAF program\\DAFI Project\\Project Analysis Power BI\\Project 7 Restaurant_Ratings\\excel\\restaurant_cuisines.xlsx\"), null, true),",
+                "    Resturant_Cuisines_Table = Source{[Item=\"Resturant_Cuisines\",Kind=\"Table\"]}[Data],",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Resturant_Cuisines_Table,{{\"Restaurant_ID\", Int64.Type}, {\"Cuisine\", type text}}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Changed Type\"),",
+                "    #\"Removed Blank Rows\" = Table.SelectRows(#\"Removed Duplicates\", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {\"\", null})))",
+                "in",
+                "    #\"Removed Blank Rows\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Resturants",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Restaurant_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "ff6a4e8b-b0ab-4df3-8b87-1c996b88cf85",
+            "sourceColumn": "Restaurant_ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d181e4b4-5410-48fc-80da-81467e372f95",
+            "sourceColumn": "Name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "City",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "dc99634f-7711-440e-a232-5b129030cfe8",
+            "sourceColumn": "City",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "State",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b82219ce-a00f-44aa-80f6-18b92b138c5a",
+            "sourceColumn": "State",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Country",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "68a59f60-89bf-4c3a-9630-a03a6e122058",
+            "sourceColumn": "Country",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Zip_Code",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "831f5ead-0868-4952-9145-69b1f54fc60f",
+            "sourceColumn": "Zip_Code",
+            "summarizeBy": "count"
+          },
+          {
+            "name": "Latitude",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "2cd76018-a818-4af6-a37e-825d30a5122e",
+            "sourceColumn": "Latitude",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Longitude",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "5472d69f-f8a7-4aa3-aa61-e52888c0aa9a",
+            "sourceColumn": "Longitude",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Alcohol_Service",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a33166b9-6d4a-4e88-93f2-99fa5e043b65",
+            "sourceColumn": "Alcohol_Service",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Smoking_Allowed",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "bb9ff94c-b19f-4ce8-bf72-43b53fbb997e",
+            "sourceColumn": "Smoking_Allowed",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Price",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b278f085-d6d0-4b18-a9e4-35fa7d18443e",
+            "sourceColumn": "Price",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Franchise",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d0f20305-c53d-4ec1-a29b-88b1e0286ac0",
+            "sourceColumn": "Franchise",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Area",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "82958182-c26c-41c0-a471-62fb36e4da0e",
+            "sourceColumn": "Area",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Parking",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "24d0fdcd-7cfb-4ecb-8739-a58eac5bd237",
+            "sourceColumn": "Parking",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "bc046d7c-315a-42e3-a5d3-c468d65e79c7",
+        "partitions": [
+          {
+            "name": "Resturants",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(File.Contents(\"C:\\Users\\Lenovo\\Desktop\\Quantum Analytics DAF program\\DAFI Project\\Project Analysis Power BI\\Project 7 Restaurant_Ratings\\excel\\restaurants.xlsx\"), null, true),",
+                "    Resturants_Table = Source{[Item=\"Resturants\",Kind=\"Table\"]}[Data],",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Resturants_Table,{{\"Restaurant_ID\", Int64.Type}, {\"Name\", type text}, {\"City\", type text}, {\"State\", type text}, {\"Country\", type text}, {\"Zip_Code\", Int64.Type}, {\"Latitude\", type number}, {\"Longitude\", type number}, {\"Alcohol_Service\", type text}, {\"Smoking_Allowed\", type text}, {\"Price\", type text}, {\"Franchise\", type text}, {\"Area\", type text}, {\"Parking\", type text}}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Changed Type\"),",
+                "    #\"Removed Blank Rows\" = Table.SelectRows(#\"Removed Duplicates\", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {\"\", null})))",
+                "in",
+                "    #\"Removed Blank Rows\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DAX",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Column1",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d5db4f47-5784-4438-ba09-49c97ca9aa34",
+            "sourceColumn": "Column1",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "206a7a70-8b19-49b3-ab23-593df5525133",
+        "measures": [
+          {
+            "name": "Total consumers",
+            "expression": "COUNTROWS(Consumers)",
+            "formatString": "0",
+            "lineageTag": "f92c025b-a72f-4dc8-914d-e0c44e39d97b"
+          },
+          {
+            "name": "total married consumers",
+            "expression": "COUNTROWS( FILTER(Consumers, Consumers[Marital_Status] = \"Married\"))",
+            "formatString": "0",
+            "lineageTag": "581b675d-ba18-4f7c-a060-9d6d89bbfa37"
+          },
+          {
+            "name": "Total unmarried consumer",
+            "expression": "COUNTROWS(FILTER(Consumers, Consumers[Marital_Status]= \"Single\"))",
+            "formatString": "0",
+            "lineageTag": "0b0b03c7-e216-4875-a7a7-47e3c20073f7"
+          },
+          {
+            "name": "Total consumer",
+            "expression": "COUNTROWS(Consumers)",
+            "formatString": "0",
+            "lineageTag": "2a88a297-0fee-4a02-9a70-96d9fcfbc2f2"
+          },
+          {
+            "name": "Total cuisines",
+            "expression": "DISTINCTCOUNT(Consumer_Preferences[Preferred_Cuisine])",
+            "formatString": "0",
+            "lineageTag": "9ade5381-0ff2-4a35-8fae-4d11a3c5df56"
+          },
+          {
+            "name": "Average Rating",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "AVERAGE(Ratings[Overall_Rating])",
+            "lineageTag": "f121491c-4a27-4abf-8fd4-3761352a6956"
+          },
+          {
+            "name": "Total cities",
+            "expression": "DISTINCTCOUNT(Consumers[City])",
+            "formatString": "0",
+            "lineageTag": "c9f1a2cd-72e1-4aa5-8268-51be97312d57"
+          },
+          {
+            "name": "Total state",
+            "expression": "DISTINCTCOUNT(Consumers[State])",
+            "formatString": "0",
+            "lineageTag": "385e4d48-bf53-49de-8f20-382c7265bf6a"
+          },
+          {
+            "name": "Total resturant",
+            "expression": "DISTINCTCOUNT(Resturants[Restaurant_ID])",
+            "formatString": "0",
+            "lineageTag": "0734deb4-4ca0-4909-be94-be15495dac3f"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DAX",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i44FAA==\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "CuisineCount",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "dddf41fad18640dea3f116f8819515d6"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Preferred_Cuisine",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "d767e50a-84b8-4188-b25e-885393dc1002",
+            "sourceColumn": "Consumer_Preferences[Preferred_Cuisine]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Count",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "75e0721a-0cb5-41b6-95a3-1c2077b0f8ae",
+            "sourceColumn": "[Count]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          }
+        ],
+        "lineageTag": "7a280878-bced-4a58-b9a1-28dca62f7b3e",
+        "partitions": [
+          {
+            "name": "CuisineCount",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "",
+                "SUMMARIZE(",
+                "    'Consumer_Preferences',",
+                "    'Consumer_Preferences'[Preferred_Cuisine],",
+                "    \"Count\", COUNTROWS('Consumer_Preferences')",
+                ")",
+                ""
+              ],
+              "type": "calculated"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

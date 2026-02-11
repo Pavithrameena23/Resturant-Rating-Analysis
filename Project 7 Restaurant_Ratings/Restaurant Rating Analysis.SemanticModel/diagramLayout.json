@@ -1,0 +1,113 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 499,
+        "y": 31.333333969116211
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "Consumer_Preferences",
+          "nodeLineageTag": "62b84be8-6e16-4e5a-82e8-03752f290436",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 247,
+            "y": 118
+          },
+          "nodeIndex": "Consumers",
+          "nodeLineageTag": "078567a2-43d8-4d95-a114-765bf68a1321",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 580,
+            "y": 112
+          },
+          "nodeIndex": "Ratings",
+          "nodeLineageTag": "2f72417e-b479-4b97-87d4-10534b578c7e",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 874,
+            "y": 310
+          },
+          "nodeIndex": "Resturant_Cuisines",
+          "nodeLineageTag": "61646552-5cff-417a-a14e-a79d0b7d26dc",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1136,
+            "y": 0
+          },
+          "nodeIndex": "Resturants",
+          "nodeLineageTag": "bc046d7c-315a-42e3-a5d3-c468d65e79c7",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1420,
+            "y": 167
+          },
+          "nodeIndex": "DAX",
+          "nodeLineageTag": "206a7a70-8b19-49b3-ab23-593df5525133",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 174.99999618530273
+          },
+          "nodeIndex": "CuisineCount",
+          "nodeLineageTag": "7a280878-bced-4a58-b9a1-28dca62f7b3e",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

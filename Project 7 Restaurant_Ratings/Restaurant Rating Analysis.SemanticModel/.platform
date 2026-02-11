@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Restaurant Rating Analysis"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a2504223-94c7-4d52-a531-e70fb13820b9"
+  }
+}
